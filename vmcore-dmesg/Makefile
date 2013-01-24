@@ -17,7 +17,7 @@ clean += $(VMCORE_DMESG_OBJS) $(VMCORE_DMESG_DEPS) $(VMCORE_DMESG) $(VMCORE_DMES
 
 $(VMCORE_DMESG): $(VMCORE_DMESG_OBJS)
 	@$(MKDIR) -p $(@D)
-	$(LINK.o) -o $@ $^ $(CFLAGS)
+	$(LINK.o) -o $@ $^ $(CFLAGS) $(LIBS)
 
 $(VMCORE_DMESG_MANPAGE): vmcore-dmesg/vmcore-dmesg.8
 	$(MKDIR) -p     $(MANDIR)/man8

@@ -11,14 +11,14 @@ KDUMP = $(SBINDIR)/kdump
 KDUMP_MANPAGE = $(MANDIR)/man8/kdump.8
 
 dist += kdump/Makefile $(KDUMP_SRCS) kdump/kdump.8
-clean += $(KDUMP_OBJS) $(KDUMP_DEPS) $(KDUMP) $(KDUMP_MANPAGE)
+clean += $(KDUMP_OBJS) $(KDUMP_DEPS) crtbegin_so.o $(KDUMP) $(KDUMP_MANPAGE)
 
 -include $(KDUMP_DEPS)
 
 $(KDUMP): CC=$(TARGET_CC)
 $(KDUMP): $(KDUMP_OBJS)
 	@$(MKDIR) -p $(@D)
-	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -o $@ $(KDUMP_OBJS)
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -o $@ $(KDUMP_OBJS) $(LIBS)
 
 $(KDUMP_MANPAGE): kdump/kdump.8
 	$(MKDIR) -p     $(MANDIR)/man8
